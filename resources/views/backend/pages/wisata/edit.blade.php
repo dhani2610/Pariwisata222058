@@ -43,7 +43,7 @@
 
         <div class="row">
             <!-- data table start -->
-            <form action="{{ route('wisata.update', $wisata->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('wisata.update', $wisata->id_222058) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="col-12 mt-5">
                     <div class="card">
@@ -59,7 +59,7 @@
                                         <div class="form-group col-md-12 col-sm-12">
                                             <label for="name">Nama Wisata</label>
                                             <input required type="text" class="form-control" id="nama_wisata"
-                                                name="nama_wisata" placeholder="" value="{{ $wisata->nama_wisata }}">
+                                                name="nama_wisata" placeholder="" value="{{ $wisata->nama_222058 }}">
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12 col-sm-12">
                                             <label for="name">Deskripsi</label>
-                                            <textarea name="deskripsi" class="form-control" id="" cols="30" rows="10">{{ $wisata->deskripsi }}</textarea>
+                                            <textarea name="deskripsi" class="form-control" id="" cols="30" rows="10">{{ $wisata->deskripsi_222058 }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                                         <div class="form-group col-md-12 col-sm-12">
                                             <label for="name">Lokasi</label>
                                             <input required type="text" class="form-control" id="lokasi"
-                                                name="lokasi" placeholder="" value="{{ $wisata->lokasi }}">
+                                                name="lokasi" placeholder="" value="{{ $wisata->lokasi_222058 }}">
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@
                                         <div class="form-group col-md-12 col-sm-12">
                                             <label for="name">Harga Tiket (Rp.)</label>
                                             <input required type="number" class="form-control" id="harga_tiket"
-                                                name="harga_tiket" placeholder="" value="{{ $wisata->harga_tiket }}">
+                                                name="harga_tiket" placeholder="" value="{{ $wisata->harga_222058 }}">
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +96,8 @@
                                         <div class="form-group col-md-12 col-sm-12">
                                             <label for="name">Jumlah Tiket</label>
                                             <input required type="number" class="form-control" id="jumlah_tiket"
-                                                name="jumlah_tiket" placeholder="" value="{{ $wisata->jumlah_tiket }}">
+                                                name="jumlah_tiket" placeholder=""
+                                                value="{{ $wisata->jumlah_tiket_222058 }}">
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +108,8 @@
                                         <div class="form-group col-md-12 col-sm-12">
                                             <label for="name">Jumlah Gazebo</label>
                                             <input required type="number" class="form-control" id="jumlah_gazebo"
-                                                name="jumlah_gazebo" placeholder="" value="{{ $wisata->jumlah_gazebo }}">
+                                                name="jumlah_gazebo" placeholder=""
+                                                value="{{ $wisata->jumlah_gazebo_222058 }}">
                                         </div>
                                     </div>
                                 </div>
@@ -127,10 +129,13 @@
                                                 <div class="dropify-row mb-2">
                                                     <button type="button" class="btn btn-danger btn-sm remove-row"
                                                         style="float: right">-</button>
-                                                    <input type="hidden" value="{{ $f->id }}" name="old_photo[]">
+                                                    <input type="hidden" value="{{ $f->id_222058 }}" name="old_photo[]">
                                                     <input type="file" name="foto_wisata[]" class="dropify"
                                                         data-height="200"
-                                                        data-default-file="{{ asset('assets/img/foto_wisata/' . $f->foto) }}" />
+                                                        data-default-file="{{ asset('assets/img/foto_wisata/' . $f->url_foto_222058) }}" />
+                                                    <label for="" class="mt-1">Deskripsi</label>
+                                                    <input type="text" name="deskripsi_foto[]" class="form-control"
+                                                        value="{{ $f->deskripsi_222058 }}" id="">
                                                 </div>
                                             </div>
                                         @endforeach
@@ -159,17 +164,17 @@
                                     @foreach ($jasa as $j)
                                         <tr class="travel-row">
                                             <td>
-                                                <input type="text" value="{{ $j->nama_travel }}" name="nama_travel[]"
-                                                    class="form-control" placeholder="Nama Travel">
+                                                <input type="text" value="{{ $j->nama_travel_222058 }}"
+                                                    name="nama_travel[]" class="form-control" placeholder="Nama Travel">
                                             </td>
                                             <td>
-                                                <input type="text" value="{{ $j->jenis_kendaraan }}"
+                                                <input type="text" value="{{ $j->jenis_kendaraan_222058 }}"
                                                     name="jenis_kendaraan[]" class="form-control"
                                                     placeholder="Jenis Kendaraan">
                                             </td>
                                             <td>
-                                                <input type="number" value="{{ $j->tarif }}" name="tarif[]"
-                                                    class="form-control" placeholder="Tarif">
+                                                <input type="number" value="{{ $j->harga_perjalanan_222058 }}"
+                                                    name="tarif[]" class="form-control" placeholder="Tarif">
                                             </td>
                                             <td>
                                                 <button type="button"
@@ -214,8 +219,12 @@
         $('#add-row').on('click', function() {
             const newRow = `
             <div class="dropify-row mb-2">
+                <hr>
+
                 <button type="button" class="btn btn-danger btn-sm remove-row"style="float: right">-</button>
                 <input type="file" name="foto_wisata[]" class="dropify" data-height="200" />
+                 <label for="" class="mt-1">Deskripsi</label>
+                <input type="text" name="deskripsi_foto[]" class="form-control" id="">
             </div>
         `;
             $('#dropify-wrapper').append(newRow);

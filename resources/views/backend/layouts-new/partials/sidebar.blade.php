@@ -52,13 +52,19 @@
         <div data-i18n="Wisata">Wisata</div>
       </a>
     </li>
+    <li class="menu-item {{ Request::is('wisata.kelola.pesanan') ? 'active' : '' }}">
+      <a href="{{ route('wisata.kelola.pesanan') }}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div data-i18n="Wisata">Kelola Pesanan</div>
+      </a>
+    </li>
 
     @if ($usr->can('admin.view') ||  $usr->can('role.view'))
     <!-- Layouts -->
     <li class="menu-item {{ Request::is('admin/admins') || Request::is('admin/roles') ? 'open' : '' }}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Layouts">Management Users</div>
+        <div data-i18n="Layouts">Kelola Pengguna</div>
       </a>
 
       <ul class="menu-sub">

@@ -47,18 +47,18 @@
                                <tr>
                                    
                                     <td>{{ $loop->index+1 }}</td>
-                                    <td>{{ $s->nama_wisata }}</td>
-                                    <td>{{ $s->lokasi }}</td>
-                                    <td>@currency($s->harga_tiket)</td>
-                                    <td>{{ $s->jumlah_tiket }}</td>
-                                    <td>{{ $s->jumlah_gazebo }}</td>
+                                    <td>{{ $s->nama_222058 }}</td>
+                                    <td>{{ $s->lokasi_222058 }}</td>
+                                    <td>@currency($s->harga_222058)</td>
+                                    <td>{{ $s->jumlah_tiket_222058 }}</td>
+                                    <td>{{ $s->jumlah_gazebo_222058 }}</td>
                                     <td>
-                                        <a class="btn btn-success text-white" href="{{ route('wisata.edit', $s->id) }}">
+                                        <a class="btn btn-success text-white" href="{{ route('wisata.edit', $s->id_222058) }}">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     
-                                        <a class="btn btn-danger text-white" onclick="confirmDelete('{{ route('wisata.destroy', $s->id) }}')">
-                                            <i class="fa fa-trash-o"></i>
+                                        <a class="btn btn-danger text-white" onclick="confirmDelete('{{ route('wisata.destroy', $s->id_222058) }}')">
+                                            <i class="fa-solid fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>

@@ -128,6 +128,8 @@
                                                     style="float: right">-</button>
                                                 <input type="file" name="foto_wisata[]" class="dropify"
                                                     data-height="200" />
+                                                <label for="" class="mt-1">Deskripsi</label>
+                                                <input type="text" name="deskripsi_foto[]" class="form-control" id="">
                                             </div>
                                         </div>
                                     </div>
@@ -206,8 +208,11 @@
         $('#add-row').on('click', function() {
             const newRow = `
             <div class="dropify-row mb-2">
+                <hr>
                 <button type="button" class="btn btn-danger btn-sm remove-row"style="float: right">-</button>
                 <input type="file" name="foto_wisata[]" class="dropify" data-height="200" />
+                   <label for="" class="mt-1">Deskripsi</label>
+                <input type="text" name="deskripsi_foto[]" class="form-control" id="">
             </div>
         `;
             $('#dropify-wrapper').append(newRow);
