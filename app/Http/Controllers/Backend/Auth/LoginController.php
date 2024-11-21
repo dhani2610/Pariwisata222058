@@ -56,16 +56,25 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        // Attempt to login
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            // Redirect to dashboard
-            session()->flash('success', 'Successully Logged in !');
-            return redirect()->route('index');
-        } else {
-            // Search using username
-            if (Auth::guard('admin')->attempt(['username' => $request->email, 'password' => $request->password], $request->remember)) {
+            $userRole = Auth::guard('admin')->user()->getRoleNames()->first(); 
+            if ($userRole != 'superadmin') {
                 session()->flash('success', 'Successully Logged in !');
                 return redirect()->route('index');
+            } else {
+                session()->flash('success', 'Successully Logged in !');
+                return redirect()->route('wisata');
+            }
+        } else {
+            if (Auth::guard('admin')->attempt(['username' => $request->email, 'password' => $request->password], $request->remember)) {
+                $userRole = Auth::guard('admin')->user()->getRoleNames()->first(); 
+                if ($userRole != 'superadmin') {
+                    session()->flash('success', 'Successully Logged in !');
+                    return redirect()->route('index');
+                } else {
+                    session()->flash('success', 'Successully Logged in !');
+                    return redirect()->route('wisata');
+                }
             }
             // error
             session()->flash('error', 'Invalid email and password');
