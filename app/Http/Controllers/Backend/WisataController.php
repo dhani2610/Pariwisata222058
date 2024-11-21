@@ -85,7 +85,7 @@ class WisataController extends Controller
                 $no = 1;
                 foreach ($request->file('foto_wisata') as $index => $foto) {
                     $fotoWisata = new FotoWisata();
-                    $fotoWisata->wisata_id_222058 = $wisata->id; 
+                    $fotoWisata->wisata_id_222058 = $wisata->id_222058; 
                     $fotoWisata->deskripsi_222058 = $request->deskripsi_foto[$index]; 
                     if ($foto) {
                         $image = $foto;
