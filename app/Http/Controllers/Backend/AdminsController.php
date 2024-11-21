@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Pengguna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -84,6 +85,14 @@ class AdminsController extends Controller
             $admin->assignRole($request->roles);
         }
 
+        $pengguna = new Pengguna();
+        $pengguna->id_master_222058 = $admin->id;
+        $pengguna->nama_222058 = $request->name;
+        $pengguna->email_222058 = $request->email;
+        $pengguna->password_222058 = Hash::make($request->password);
+        $pengguna->tipe_222058 = $request->roles[0];
+        $pengguna->save();
+
         session()->flash('success', 'Admin has been created !!');
         return redirect()->route('admin.admins.index');
     }
@@ -161,6 +170,19 @@ class AdminsController extends Controller
             $admin->assignRole($request->roles);
         }
 
+        $check  = Pengguna::where('id_master_222058', $admin->id)->first();
+        if ($check != null) {
+            $pengguna  = Pengguna::where('id_master_222058', $admin->id)->first();
+        } else {
+            $pengguna = new Pengguna();
+        }
+        $pengguna->id_master_222058 = $admin->id;
+        $pengguna->nama_222058 = $request->name;
+        $pengguna->email_222058 = $request->email;
+        $pengguna->password_222058 = $admin->password;
+        $pengguna->tipe_222058 = $request->roles[0];
+        $pengguna->save();
+
         session()->flash('success', 'Admin has been updated !!');
         return back();
     }
@@ -186,7 +208,15 @@ class AdminsController extends Controller
         }
 
         $admin = Admin::find($id);
+
+        
         if (!is_null($admin)) {
+
+            $pengguna  = Pengguna::where('id_master_222058', $admin->id)->first();
+            if ($pengguna != null) {
+                $pengguna->delete();
+            } 
+    
             $admin->delete();
         }
 

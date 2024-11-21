@@ -15,7 +15,7 @@
                     <form id="admin-logout-form" action="{{ route('admin.logout.submit') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    <li><a
+                    <li><a href="#"
                             onclick="event.preventDefault();
                           document.getElementById('admin-logout-form').submit();">Logout</a>
                     </li>

@@ -380,6 +380,10 @@
                                         'wisata_id_222058',
                                         $w->id_222058,
                                     )->first();
+                                    $review = \App\Models\Review::where(
+                                        'wisata_id_222058',
+                                        $w->id_222058,
+                                    )->get();
                                 @endphp
                                 <div class="image">
                                     @if ($imgFirst == null)
@@ -396,7 +400,7 @@
                                             <span>4.3</span>
                                             <i class="material-icons">star</i>
                                         </div>
-                                        <div class="comment">(371 Reviews)</div>
+                                        <div class="comment">({{count($review)}} Reviews)</div>
                                     </div>
                                     <h1 class="topic">{{ $w->nama_222058 }}</h1>
                                     <p class="two-block">{{ $w->deskripsi_222058 }}</p>

@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\FotoWisata;
 use App\Models\JasaTravel;
 use App\Models\Pembayaran;
+use App\Models\Pengguna;
 use App\Models\Review;
 use App\Models\Tiket;
 use App\Models\Wisata;
@@ -166,7 +167,6 @@ class LandingPageController extends Controller
                 'email' => 'required|max:100|email|unique:admins',
                 'password' => 'required|min:6',
             ]);
-
             // Create New Admin
             $admin = new Admin();
             $admin->name = $request->name;
@@ -178,6 +178,15 @@ class LandingPageController extends Controller
             if ($request->roles) {
                 $admin->assignRole($request->roles);
             }
+
+            $pengguna = new Pengguna();
+            $pengguna->id_master_222058 = $admin->id;
+            $pengguna->nama_222058 = $request->name;
+            $pengguna->email_222058 = $request->email;
+            $pengguna->password_222058 = Hash::make($request->password);
+            $pengguna->tipe_222058 = $request->roles[0];
+            $pengguna->save();
+
 
             session()->flash('success', 'Register berhasil.');
             return redirect('admin/login');
