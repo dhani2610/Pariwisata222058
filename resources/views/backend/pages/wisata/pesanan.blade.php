@@ -116,7 +116,7 @@
                                         <th>Total Pembayaran</th>
                                         <th>Bukti Pembayaran</th>
                                         <th>Status</th>
-                                        @if (Auth::guard('pengguna')->user()->tipe_222058 == 'superadmin' || Auth::guard('pengguna')->user()->tipe_222058 == 'pengelola wisata')
+                                        @if (Auth::guard('pengguna')->user()->tipe_222058 == 'superadmin')
                                             <th>Aksi</th>
                                         @endif
                                     </tr>
@@ -185,7 +185,7 @@
                                                 @endif
                                             </td>
                                             <!-- Actions -->
-                                            @if (Auth::guard('pengguna')->user()->tipe_222058 == 'superadmin' || Auth::guard('pengguna')->user()->tipe_222058 == 'pengelola wisata')
+                                            @if (Auth::guard('pengguna')->user()->tipe_222058 == 'superadmin' )
                                                 <td>
                                                     @if ($pembayaran->status_222058 == 'pending_confirmation')
                                                         <a href="{{ route('wisata.update.pesanan', ['id' => $pembayaran->id_222058, 'status' => 'complate']) }}"

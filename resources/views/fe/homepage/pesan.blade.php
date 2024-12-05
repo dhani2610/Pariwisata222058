@@ -244,6 +244,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- @dd($wisata) --}}
                 <form method="POST" action="{{ route('store-pesan-tiket', $wisata->id_222058) }}">
                     @csrf
                     <div class="row setup-content" id="step-1">
@@ -285,8 +286,13 @@
                                         <input type="date" name="tanggal_kunjungan" class="form-control">
                                     </div>
                                     <div class="form-group mt-2">
-                                        <span>Jumlah Tiket</span>
-                                        <input type="number" name="jumlah_tiket" class="form-control">
+                                        <span>Jumlah Tiket (Max : {{ $wisata->jumlah_tiket_222058 }})</span>
+                                        
+                                        <input type="number" name="jumlah_tiket" id="jumlah_tiket" class="form-control" min="1" max="{{ $wisata->jumlah_tiket_222058 }}"
+                                        onkeyup="validateMaxTiket()"
+                                        oninput="validateMaxTiket()">
+                                        <small id="tiketError" class="text-danger" style="display: none;">Jumlah tiket melebihi maksimum!</small>
+
                                     </div>
                                     <input type="hidden" name="harg_tiket" value="{{ $wisata->harga_222058 }}">
                                     <input type="hidden" name="harg_tiket_view" value="@currency($wisata->harga_222058)">
@@ -412,7 +418,20 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script>
+        function validateMaxTiket() {
+            const input = document.getElementById('jumlah_tiket');
+            const maxTiket = parseInt(input.getAttribute('max'));
+            const errorMessage = document.getElementById('tiketError');
+    
+            if (input.value > maxTiket) {
+                input.value = 0;  // Set nilai input ke maksimum jika melebihi
+                errorMessage.style.display = 'block'; // Tampilkan pesan error
+            } else {
+                errorMessage.style.display = 'none'; // Sembunyikan pesan error
+            }
+        }
+    </script>
     <script>
         function updateJasaTravel(id, harga, nama) {
             console.log(id);
